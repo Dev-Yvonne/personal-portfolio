@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Awareness - Your Mental Health Companion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i> Mental Awareness
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+                <li><a href="#mood-tracker" class="nav-link">Mood Tracker</a></li>
+                <li><a href="#meditation" class="nav-link">Meditation</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Mental Health Matters</h1>
+            <p>Take control of your mental wellbeing with our comprehensive resources and tools</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('mood-tracker').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('meditation').scrollIntoView({behavior: 'smooth'})">Learn More</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="floating-card card-1">
+                <i class="fas fa-heart"></i>
+                <p>Self Care</p>
+            </div>
+            <div class="floating-card card-2">
+                <i class="fas fa-lightbulb"></i>
+                <p>Mindfulness</p>
+            </div>
+            <div class="floating-card card-3">
+                <i class="fas fa-smile"></i>
+                <p>Wellness</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-title">
+            <h2>About Mental Awareness</h2>
+            <p>Understanding mental health and building resilience</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Safe Space</h3>
+                <p>A judgment-free environment where you can explore your mental health journey</p>
+            </div>
+
+            <div class="about-card">
+                <div class="card-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Expert Resources</h3>
+                <p>Access information from mental health professionals and researchers</p>
+            </div>
+
+            <div class="about-card">
+                <div class="card-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Track Progress</h3>
+                <p>Monitor your mood and mental health with our tracking tools</p>
+            </div>
+
+            <div class="about-card">
+                <div class="card-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Community Support</h3>
+                <p>Connect with others on similar mental health journeys</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources">
+        <div class="section-title">
+            <h2>Mental Health Resources</h2>
+            <p>Learn about various mental health topics</p>
+        </div>
+
+        <div class="resources-grid">
+            <article class="resource-card">
+                <div class="resource-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Understanding Depression</h3>
+                <p>Depression is a common mental health condition characterized by persistent sadness and loss of interest in activities.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="resource-card">
+                <div class="resource-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>Managing Anxiety</h3>
+                <p>Learn practical strategies to manage anxiety symptoms and develop coping mechanisms for daily life.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="resource-card">
+                <div class="resource-icon">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <h3>Sleep & Mental Health</h3>
+                <p>Discover the crucial link between quality sleep and mental wellbeing, plus tips for better sleep hygiene.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="resource-card">
+                <div class="resource-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <h3>Exercise & Wellbeing</h3>
+                <p>Explore how physical activity can significantly improve your mental health and emotional resilience.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="resource-card">
+                <div class="resource-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Nutrition & Mental Health</h3>
+                <p>Learn how proper nutrition supports brain health and can positively impact your mental wellbeing.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="resource-card">
+                <div class="resource-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Building Relationships</h3>
+                <p>Strong relationships are vital for mental wellbeing. Learn to build meaningful connections, improve communication skills, and maintain healthy boundaries.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="resource-card">
+                <div class="resource-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Stress Management</h3>
+                <p>Chronic stress affects mental and physical health. Learn evidence-based stress management techniques and create your personalized stress reduction plan.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="resource-card">
+                <div class="resource-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Self-Care Practices</h3>
+                <p>Self-care isn't selfish—it's essential. Discover various self-care activities from journaling to creative hobbies that nurture your mental wellbeing.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="resource-card">
+                <div class="resource-icon">
+                    <i class="fas fa-head-side-virus"></i>
+                </div>
+                <h3>Stress & Burnout</h3>
+                <p>Burnout is a serious condition affecting many. Understand the signs, stages, and recovery strategies to overcome professional and personal burnout.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Mood Tracker Section -->
+    <section id="mood-tracker" class="mood-tracker">
+        <div class="section-title">
+            <h2>Daily Mood Tracker</h2>
+            <p>Track your emotional wellbeing throughout the day</p>
+        </div>
+
+        <div class="mood-tracker-container">
+            <div class="mood-selection">
+                <h3>How are you feeling today?</h3>
+                <div class="mood-buttons">
+                    <button class="mood-btn" data-mood="terrible" title="Terrible">
+                        <i class="fas fa-frown-open"></i>
+                        <span>Terrible</span>
+                    </button>
+                    <button class="mood-btn" data-mood="bad" title="Bad">
+                        <i class="fas fa-frown"></i>
+                        <span>Bad</span>
+                    </button>
+                    <button class="mood-btn" data-mood="okay" title="Okay">
+                        <i class="fas fa-meh"></i>
+                        <span>Okay</span>
+                    </button>
+                    <button class="mood-btn" data-mood="good" title="Good">
+                        <i class="fas fa-smile"></i>
+                        <span>Good</span>
+                    </button>
+                    <button class="mood-btn" data-mood="excellent" title="Excellent">
+                        <i class="fas fa-grin-hearts"></i>
+                        <span>Excellent</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mood-details">
+                <h3>Tell us more (optional)</h3>
+                <textarea id="moodNotes" placeholder="What's on your mind? What caused this mood?"></textarea>
+                <button class="btn btn-primary" id="saveMoodBtn">Save Entry</button>
+            </div>
+
+            <div class="mood-history">
+                <h3>Your Mood History</h3>
+                <div id="moodEntries" class="mood-entries"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meditation Section -->
+    <section id="meditation" class="meditation">
+        <div class="section-title">
+            <h2>Guided Meditations</h2>
+            <p>Take a moment for yourself with our guided meditation sessions</p>
+        </div>
+
+        <div class="meditation-grid">
+            <div class="meditation-card">
+                <div class="meditation-icon">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <h3>5-Minute Calm</h3>
+                <p>Quick breathing exercises to instantly reduce stress, anxiety, and racing thoughts. Perfect for busy days.</p>
+                <button class="btn btn-secondary meditation-btn" onclick="startMeditation('calm', 5)">Start</button>
+            </div>
+
+            <div class="meditation-card">
+                <div class="meditation-icon">
+                    <i class="fas fa-yin-yang"></i>
+                </div>
+                <h3>10-Minute Focus</h3>
+                <p>Improve concentration, mental clarity, and mindfulness. Ideal for enhancing productivity and clearing mental clutter.</p>
+                <button class="btn btn-secondary meditation-btn" onclick="startMeditation('focus', 10)">Start</button>
+            </div>
+
+            <div class="meditation-card">
+                <div class="meditation-icon">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <h3>15-Minute Sleep</h3>
+                <p>Relax progressively and prepare for deep, restorative sleep. Excellent for insomnia and healthy sleep patterns.</p>
+                <button class="btn btn-secondary meditation-btn" onclick="startMeditation('sleep', 15)">Start</button>
+            </div>
+
+            <div class="meditation-card">
+                <div class="meditation-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>7-Minute Gratitude</h3>
+                <p>Cultivate positivity and thankfulness. This session helps shift your mindset toward appreciation and contentment.</p>
+                <button class="btn btn-secondary meditation-btn" onclick="startMeditation('gratitude', 7)">Start</button>
+            </div>
+
+            <div class="meditation-card">
+                <div class="meditation-icon">
+                    <i class="fas fa-wind"></i>
+                </div>
+                <h3>3-Minute Quick Reset</h3>
+                <p>Need an instant mental refresh? This ultra-short session resets your nervous system in just three minutes.</p>
+                <button class="btn btn-secondary meditation-btn" onclick="startMeditation('reset', 3)">Start</button>
+            </div>
+
+            <div class="meditation-card">
+                <div class="meditation-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <h3>20-Minute Deep Relaxation</h3>
+                <p>A comprehensive deep relaxation session for complete stress relief and restoration of mental peace and wellbeing.</p>
+                <button class="btn btn-secondary meditation-btn" onclick="startMeditation('deep', 20)">Start</button>
+            </div>
+        </div>
+
+        <!-- Meditation Timer Modal -->
+        <div id="meditationModal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-modal" onclick="closeMeditation()">&times;</button>
+                <div class="meditation-timer">
+                    <h2 id="meditationType"></h2>
+                    <div class="timer-display">
+                        <div class="timer-circle">
+                            <span id="timerMinutes">00</span>:<span id="timerSeconds">00</span>
+                        </div>
+                    </div>
+                    <p id="meditationInstruction">Close your eyes and take a deep breath...</p>
+                    <button class="btn btn-primary" id="pausePlayBtn" onclick="toggleMeditationTimer()">Pause</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <div class="section-title">
+            <h2>Mental Health Facts</h2>
+            <p>Understanding the prevalence and importance of mental health</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>1 in 5</h3>
+                <p>Adults experience mental illness each year</p>
+            </div>
+            <div class="stat-card">
+                <h3>51%</h3>
+                <p>Untreated mental illness cases due to stigma</p>
+            </div>
+            <div class="stat-card">
+                <h3>80%</h3>
+                <p>Improvement rate with proper treatment</p>
+            </div>
+            <div class="stat-card">
+                <h3>91%</h3>
+                <p>People support increased mental health funding</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>Success Stories</h2>
+            <p>Real people share their mental health journeys</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>\"Mental Awareness helped me understand my anxiety. The meditation sessions have become part of my daily routine, and I feel so much better.\"</p>
+                <h4>Sarah M.</h4>
+                <p class="role">Student, 22</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>\"The mood tracker has been eye-opening. Seeing patterns in my emotions helped me identify triggers and work on solutions with my therapist.\"</p>
+                <h4>James T.</h4>
+                <p class="role">Professional, 35</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>\"I was struggling with depression, but the resources and support here made me feel less alone. Taking the first step was the hardest part.\"</p>
+                <h4>Emma L.</h4>
+                <p class="role">Healthcare Worker, 28</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Get answers to common questions about mental health</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <h3 class="faq-question">When should I seek professional help?</h3>
+                <div class="faq-answer">
+                    <p>Consider seeking professional help if you experience persistent sadness, anxiety that interferes with daily life, suicidal thoughts, substance abuse, or any condition that affects your relationships or work. There's no \"right time\" - reaching out early is always beneficial.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">Is meditation difficult for beginners?</h3>
+                <div class="faq-answer">
+                    <p>Not at all! Meditation is a skill that improves with practice. Our guided meditations are designed for all levels. Even 3-5 minutes daily can make a difference. Don't worry about a \"perfect\" meditation - just focus on being present.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">How does exercise help mental health?</h3>
+                <div class="faq-answer">
+                    <p>Exercise releases endorphins (feel-good chemicals), reduces stress hormones, improves sleep, and increases self-confidence. Even 20-30 minutes of activity can significantly improve mood and mental clarity.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">Can I manage mental health without medication?</h3>
+                <div class="faq-answer">
+                    <p>Yes, lifestyle changes like exercise, meditation, therapy, and social support can be very effective. However, some conditions benefit from medication. The best approach is personalized - work with your healthcare provider to find what works for you.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">How often should I track my mood?</h3>
+                <div class="faq-answer">
+                    <p>Daily tracking is ideal to identify patterns, but even tracking 3-4 times weekly provides valuable insights. Consistency matters more than frequency. Use it as a tool for self-awareness, not as a burden.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">Is it okay to talk about mental health?</h3>
+                <div class="faq-answer">
+                    <p>Absolutely! Talking about mental health reduces stigma and helps others feel less alone. You don't need to share with everyone, but confiding in trusted friends, family, or professionals is healthy and encouraged.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips">
+        <div class="section-title">
+            <h2>Mental Health Tips</h2>
+            <p>Simple daily practices for better mental wellbeing</p>
+        </div>
+
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-number">1</div>
+                <h3>Practice Gratitude</h3>
+                <p>Write down 3 things you're grateful for each day. This simple practice rewires your brain toward positivity and increases happiness.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">2</div>
+                <h3>Set Boundaries</h3>
+                <p>Learn to say no to protect your mental energy. Healthy boundaries are essential for maintaining emotional wellbeing and relationships.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">3</div>
+                <h3>Stay Active</h3>
+                <p>Exercise regularly - even a 20-minute walk releases endorphins. Physical activity is a proven mood booster and stress reliever.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">4</div>
+                <h3>Connect with Others</h3>
+                <p>Spend quality time with supportive friends and family. Social connection is crucial for mental health and emotional resilience.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">5</div>
+                <h3>Practice Mindfulness</h3>
+                <p>Be present in the moment and observe thoughts without judgment. Mindfulness reduces anxiety and increases overall wellbeing.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">6</div>
+                <h3>Seek Help</h3>
+                <p>Don't hesitate to reach out to professionals. Therapy and counseling are signs of strength, not weakness.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">7</div>
+                <h3>Keep a Journal</h3>
+                <p>Writing helps process emotions and track mental patterns. Journaling is a therapeutic tool used by therapists worldwide.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">8</div>
+                <h3>Limit Screen Time</h3>
+                <p>Reduce exposure to negative news and social media. Taking digital breaks improves mental clarity and reduces anxiety.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Crisis Resources Section -->
+    <section class="crisis-resources">
+        <div class="section-title">
+            <h2>Need Help Right Now?</h2>
+            <p>If you're in crisis, please reach out to these resources immediately</p>
+        </div>
+
+        <div class="crisis-grid">
+            <div class="crisis-card">
+                <h3>National Suicide Prevention Lifeline</h3>
+                <p><strong>1-800-273-8255</strong></p>
+                <p>Available 24/7 - Free and confidential</p>
+                <p><small>Trained counselors ready to help with suicidal thoughts and emotional distress</small></p>
+            </div>
+
+            <div class="crisis-card">
+                <h3>Crisis Text Line</h3>
+                <p><strong>Text HOME to 741741</strong></p>
+                <p>24/7 crisis support via text message</p>
+                <p><small>Confidential support for those in crisis. Fast response times available.</small></p>
+            </div>
+
+            <div class="crisis-card">
+                <h3>International Association for Suicide Prevention</h3>
+                <p><strong>https://www.iasp.info/resources/Crisis_Centres/</strong></p>
+                <p>Find crisis resources in your country</p>
+                <p><small>Global directory of crisis centers and mental health resources by country</small></p>
+            </div>
+
+            <div class="crisis-card">
+                <h3>988 Suicide & Crisis Lifeline</h3>
+                <p><strong>Call or Text 988</strong></p>
+                <p>Available 24/7 - Latest crisis number</p>
+                <p><small>Newly launched number providing immediate mental health crisis support</small></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+            <p>Have questions or feedback? We'd love to hear from you</p>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+
+        <div id="formMessage" class="form-message hidden"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Mental Awareness</h4>
+                <p>Your trusted companion on your mental health journey</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#meditation">Meditation</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Mental Awareness. All rights reserved. | Mental Health Resources & Support</p>
+            <p>Disclaimer: This website provides information and is not a substitute for professional mental health advice.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
