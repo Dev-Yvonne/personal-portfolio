@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiriri Women's University of Science and Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #DC143C 0%, #003366 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .splash-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo-placeholder {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 40px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 3px dashed #003366;
+            overflow: hidden;
+        }
+
+        .logo-placeholder img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        .logo-placeholder i {
+            font-size: 80px;
+            color: #cccccc;
+        }
+
+        .university-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+        }
+
+        .university-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .motto {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            font-style: italic;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            padding-top: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #003366;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 51, 102, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #0052A3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 51, 102, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #003366;
+            transform: translateY(-2px);
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .splash-container {
+                padding: 40px 20px;
+            }
+
+            .university-name {
+                font-size: 1.8rem;
+            }
+
+            .logo-placeholder {
+                width: 150px;
+                height: 150px;
+            }
+
+            .logo-placeholder i {
+                font-size: 60px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .logo-instructions {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .logo-instructions strong {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <!-- Logo Placeholder -->
+        <div class="logo-placeholder">
+            <i class="fas fa-image"></i>
+        </div>
+
+        <!-- Logo Upload Instructions -->
+        <div class="logo-instructions">
+            <strong>📌 To add your school logo:</strong><br>
+            Replace the image placeholder above. Save your logo as PNG/JPG and update this page.
+        </div>
+
+        <!-- University Name -->
+        <h1 class="university-name">Kiriri Women's University of Science and Technology</h1>
+
+        <!-- Subtitle -->
+        <p class="university-subtitle">KWUST</p>
+
+        <!-- Motto/Tagline -->
+        <p class="motto">"Excellence in Education, Empowerment through Knowledge"</p>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-calendar-alt"></i> Go to Timetable System
+            </a>
+            <button class="btn btn-secondary" onclick="uploadLogo()">
+                <i class="fas fa-upload"></i> Upload Logo
+            </button>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="footer-note">
+            <p>Kiriri Women's University of Science and Technology © 2026</p>
+            <p>Timetable Management System v1.0</p>
+        </div>
+    </div>
+
+    <script>
+        function uploadLogo() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const logoPlaceholder = document.querySelector('.logo-placeholder');
+                        logoPlaceholder.innerHTML = `<img src="${event.target.result}" alt="University Logo">`;
+                        // Store logo in localStorage
+                        localStorage.setItem('universityLogo', event.target.result);
+                        alert('Logo uploaded successfully!');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            
+            input.click();
+        }
+
+        // Load logo on page load if previously uploaded
+        window.addEventListener('load', () => {
+            const savedLogo = localStorage.getItem('universityLogo');
+            if (savedLogo) {
+                document.querySelector('.logo-placeholder').innerHTML = `<img src="${savedLogo}" alt="University Logo">`;
+            }
+        });
+    </script>
+</body>
+</html>
