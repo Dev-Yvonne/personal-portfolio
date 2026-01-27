@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mental Awareness Hub - Your compassionate guide to mental wellbeing, mindfulness, and emotional wellness.">
+    <meta name="theme-color" content="#6B9E7F">
+    <title>Mental Awareness Hub - Your Wellbeing Companion</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - High legibility sans-serif -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVJkEZSMUkrQ6usKd7185RwfV8CI0DclZch9LFIPvf9us4csbvK9c6WLlamSGUMT+IIampVCeWw==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo" aria-label="Mental Awareness Hub Home">
+                <span class="logo-icon" aria-hidden="true">🧠</span>
+                <span class="logo-text">Awareness Hub</span>
+            </a>
+
+            <!-- Mobile menu toggle -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+
+            <!-- Navigation menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#mood-tracker" class="nav-link">Mood Tracker</a></li>
+                <li><a href="#breathe" class="nav-link">Breathe</a></li>
+                <li><a href="#affirmations" class="nav-link">Affirmations</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+            </ul>
+
+            <!-- Crisis Help Button - Prominent placement -->
+            <button class="crisis-button" aria-label="Get immediate crisis help" aria-pressed="false">
+                <span class="crisis-icon" aria-hidden="true">🆘</span>
+                <span class="crisis-text">Crisis Help</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Crisis Modal -->
+    <dialog class="crisis-modal" id="crisisModal" aria-labelledby="crisis-title">
+        <div class="crisis-modal-content">
+            <button class="modal-close" aria-label="Close crisis help modal">&times;</button>
+            <h2 id="crisis-title">Immediate Support</h2>
+            
+            <section class="crisis-resources">
+                <div class="crisis-resource-card">
+                    <h3>National Suicide Prevention Lifeline</h3>
+                    <p><strong>1-800-273-8255</strong></p>
+                    <p class="text-muted">Available 24/7</p>
+                </div>
+
+                <div class="crisis-resource-card">
+                    <h3>Crisis Text Line</h3>
+                    <p><strong>Text HOME to 741741</strong></p>
+                    <p class="text-muted">Immediate support via text</p>
+                </div>
+
+                <div class="crisis-resource-card">
+                    <h3>International Association for Suicide Prevention</h3>
+                    <p><a href="https://www.iasp.info/resources/Crisis_Centres/" target="_blank" rel="noopener noreferrer">Find crisis centers worldwide</a></p>
+                </div>
+            </section>
+
+            <p class="crisis-note">If you're in immediate danger, please call emergency services (911 in the US) or go to your nearest emergency room.</p>
+        </div>
+    </dialog>
+
+    <!-- Main content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-heading">
+            <div class="hero-content">
+                <h1 id="hero-heading">Your Mental Wellbeing Matters</h1>
+                <p class="hero-subtitle">A compassionate space to check in with yourself, breathe, and find daily inspiration</p>
+                <a href="#mood-tracker" class="cta-button primary-cta">Start Your Journey</a>
+            </div>
+
+            <!-- Decorative element -->
+            <div class="hero-decoration" aria-hidden="true"></div>
+        </section>
+
+        <!-- Mood Tracker Section -->
+        <section id="mood-tracker" class="mood-section" aria-labelledby="mood-heading">
+            <div class="section-container">
+                <h2 id="mood-heading">How Are You Feeling Today?</h2>
+                <p class="section-subtitle">Check in with your emotions. Your feelings are valid and important.</p>
+
+                <div class="mood-tracker">
+                    <fieldset>
+                        <legend class="sr-only">Select your current mood</legend>
+                        
+                        <label class="mood-option" data-mood="1">
+                            <input type="radio" name="mood" value="1" aria-label="Very sad">
+                            <span class="mood-emoji" aria-hidden="true">😢</span>
+                            <span class="mood-label">Very Sad</span>
+                        </label>
+
+                        <label class="mood-option" data-mood="2">
+                            <input type="radio" name="mood" value="2" aria-label="Sad">
+                            <span class="mood-emoji" aria-hidden="true">😔</span>
+                            <span class="mood-label">Sad</span>
+                        </label>
+
+                        <label class="mood-option" data-mood="3">
+                            <input type="radio" name="mood" value="3" aria-label="Neutral">
+                            <span class="mood-emoji" aria-hidden="true">😐</span>
+                            <span class="mood-label">Neutral</span>
+                        </label>
+
+                        <label class="mood-option" data-mood="4">
+                            <input type="radio" name="mood" value="4" aria-label="Good">
+                            <span class="mood-emoji" aria-hidden="true">🙂</span>
+                            <span class="mood-label">Good</span>
+                        </label>
+
+                        <label class="mood-option" data-mood="5">
+                            <input type="radio" name="mood" value="5" aria-label="Very happy">
+                            <span class="mood-emoji" aria-hidden="true">😄</span>
+                            <span class="mood-label">Very Happy</span>
+                        </label>
+                    </fieldset>
+                </div>
+
+                <div class="mood-feedback" id="moodFeedback" role="status" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- Breathe Component -->
+        <section id="breathe" class="breathe-section" aria-labelledby="breathe-heading">
+            <div class="section-container">
+                <h2 id="breathe-heading">Take a Moment to Breathe</h2>
+                <p class="section-subtitle">A simple breathing exercise to calm your mind and center yourself</p>
+
+                <div class="breathe-container">
+                    <div class="breathe-circle" id="breatheCircle" aria-label="Breathing animation circle"></div>
+                    
+                    <div class="breathe-instructions">
+                        <p id="breatheText" class="breathe-text">Breathe In</p>
+                        <p class="breathe-count">4 seconds</p>
+                    </div>
+
+                    <button class="cta-button secondary-cta" id="toggleBreathe" aria-label="Toggle breathing exercise">
+                        Start Breathing
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Affirmations Section -->
+        <section id="affirmations" class="affirmations-section" aria-labelledby="affirmations-heading">
+            <div class="section-container">
+                <h2 id="affirmations-heading">Daily Affirmation</h2>
+                <p class="section-subtitle">A reminder that you are worthy, capable, and deserving of kindness</p>
+
+                <div class="affirmation-card">
+                    <p class="affirmation-text" id="affirmationText" role="status" aria-live="polite">
+                        "I am worthy of love and compassion."
+                    </p>
+                    <button class="cta-button outline-cta" id="newAffirmation" aria-label="Generate new affirmation">
+                        New Affirmation
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="resources-section" aria-labelledby="resources-heading">
+            <div class="section-container">
+                <h2 id="resources-heading">Mental Health Resources</h2>
+                <p class="section-subtitle">Helpful tools and information for your wellbeing journey</p>
+
+                <div class="resources-grid">
+                    <article class="resource-card">
+                        <div class="resource-icon" aria-hidden="true">📚</div>
+                        <h3>Understanding Emotions</h3>
+                        <p>Learn about your emotions and how to process them in healthy ways.</p>
+                        <a href="#" class="resource-link">Learn More</a>
+                    </article>
+
+                    <article class="resource-card">
+                        <div class="resource-icon" aria-hidden="true">💤</div>
+                        <h3>Sleep & Rest</h3>
+                        <p>Discover practices for better sleep and deeper rest to support your mental health.</p>
+                        <a href="#" class="resource-link">Learn More</a>
+                    </article>
+
+                    <article class="resource-card">
+                        <div class="resource-icon" aria-hidden="true">🤝</div>
+                        <h3>Building Connections</h3>
+                        <p>Explore ways to strengthen relationships and build a supportive community.</p>
+                        <a href="#" class="resource-link">Learn More</a>
+                    </article>
+
+                    <article class="resource-card">
+                        <div class="resource-icon" aria-hidden="true">🎯</div>
+                        <h3>Setting Boundaries</h3>
+                        <p>Learn techniques for establishing healthy boundaries in your relationships.</p>
+                        <a href="#" class="resource-link">Learn More</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Mental Awareness Hub</h3>
+                <p>Your compassionate guide to mental wellbeing and emotional wellness.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <nav aria-label="Footer navigation">
+                    <ul>
+                        <li><a href="#mood-tracker">Mood Tracker</a></li>
+                        <li><a href="#breathe">Breathing</a></li>
+                        <li><a href="#affirmations">Affirmations</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="footer-section">
+                <h3>Crisis Support</h3>
+                <p>National Suicide Prevention Lifeline:<br>
+                <strong>1-800-273-8255</strong></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mental Awareness Hub. All rights reserved.</p>
+            <p class="disclaimer">This site is for informational purposes only and not a substitute for professional mental health care.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
