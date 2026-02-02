@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Registration System - Register and manage student information">
+    <title>Student Registration System</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVJkEZSMUkrQ6usKd7185RwfV8CI0DclZch9LFIPvf9us4csbvK9c6WLlamSGUMT+IIampVCeWw==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo" aria-label="Student Registration System Home">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                <span>Student Registration</span>
+            </a>
+
+            <!-- Mobile menu toggle -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+
+            <!-- Navigation menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#register" class="nav-link">Register</a></li>
+                <li><a href="#students" class="nav-link">View Students</a></li>
+                <li><a href="#statistics" class="nav-link">Statistics</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="container">
+                <h1>Student Registration System</h1>
+                <p class="subtitle">Manage and register student information efficiently</p>
+            </div>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs-container">
+            <div class="container">
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="register" aria-selected="true">
+                        <i class="fas fa-user-plus" aria-hidden="true"></i> Register
+                    </button>
+                    <button class="tab-button" data-tab="students" aria-selected="false">
+                        <i class="fas fa-list" aria-hidden="true"></i> Students
+                    </button>
+                    <button class="tab-button" data-tab="statistics" aria-selected="false">
+                        <i class="fas fa-chart-bar" aria-hidden="true"></i> Statistics
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Section -->
+        <section id="register" class="tab-content active" role="tabpanel" aria-labelledby="register-tab">
+            <div class="container">
+                <div class="form-wrapper">
+                    <h2>Student Registration Form</h2>
+                    
+                    <!-- Success Message -->
+                    <div class="alert alert-success" id="successMessage" role="status" aria-live="polite" style="display: none;">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span id="successText">Student registered successfully!</span>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div class="alert alert-error" id="errorMessage" role="alert" aria-live="assertive" style="display: none;">
+                        <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+                        <span id="errorText">Please correct the errors below</span>
+                    </div>
+
+                    <form id="registrationForm" class="registration-form" novalidate>
+                        <!-- Personal Information Section -->
+                        <fieldset>
+                            <legend>Personal Information</legend>
+
+                            <!-- Full Name -->
+                            <div class="form-group">
+                                <label for="fullName">Full Name <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="fullName" 
+                                    name="fullName" 
+                                    placeholder="John Doe"
+                                    required
+                                    aria-describedby="fullNameError"
+                                >
+                                <span class="form-error" id="fullNameError"></span>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="john@example.com"
+                                    required
+                                    aria-describedby="emailError"
+                                >
+                                <span class="form-error" id="emailError"></span>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="form-group">
+                                <label for="phone">Phone Number <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone" 
+                                    placeholder="+1 (555) 123-4567"
+                                    required
+                                    aria-describedby="phoneError"
+                                >
+                                <span class="form-error" id="phoneError"></span>
+                            </div>
+
+                            <!-- Date of Birth -->
+                            <div class="form-group">
+                                <label for="dob">Date of Birth <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="date" 
+                                    id="dob" 
+                                    name="dob"
+                                    required
+                                    aria-describedby="dobError"
+                                >
+                                <span class="form-error" id="dobError"></span>
+                            </div>
+                        </fieldset>
+
+                        <!-- Address Section -->
+                        <fieldset>
+                            <legend>Address Information</legend>
+
+                            <!-- Street Address -->
+                            <div class="form-group">
+                                <label for="address">Street Address <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="address" 
+                                    name="address" 
+                                    placeholder="123 Main Street"
+                                    required
+                                    aria-describedby="addressError"
+                                >
+                                <span class="form-error" id="addressError"></span>
+                            </div>
+
+                            <!-- City -->
+                            <div class="form-group form-group-half">
+                                <label for="city">City <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="city" 
+                                    name="city" 
+                                    placeholder="New York"
+                                    required
+                                    aria-describedby="cityError"
+                                >
+                                <span class="form-error" id="cityError"></span>
+                            </div>
+
+                            <!-- State/Province -->
+                            <div class="form-group form-group-half">
+                                <label for="state">State/Province <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="state" 
+                                    name="state" 
+                                    placeholder="NY"
+                                    required
+                                    aria-describedby="stateError"
+                                >
+                                <span class="form-error" id="stateError"></span>
+                            </div>
+
+                            <!-- ZIP Code -->
+                            <div class="form-group form-group-half">
+                                <label for="zip">ZIP/Postal Code <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="zip" 
+                                    name="zip" 
+                                    placeholder="10001"
+                                    required
+                                    aria-describedby="zipError"
+                                >
+                                <span class="form-error" id="zipError"></span>
+                            </div>
+
+                            <!-- Country -->
+                            <div class="form-group form-group-half">
+                                <label for="country">Country <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="country" 
+                                    name="country" 
+                                    placeholder="United States"
+                                    required
+                                    aria-describedby="countryError"
+                                >
+                                <span class="form-error" id="countryError"></span>
+                            </div>
+                        </fieldset>
+
+                        <!-- Academic Information Section -->
+                        <fieldset>
+                            <legend>Academic Information</legend>
+
+                            <!-- Major -->
+                            <div class="form-group">
+                                <label for="major">Major/Field of Study <span class="required" aria-label="required">*</span></label>
+                                <select 
+                                    id="major" 
+                                    name="major"
+                                    required
+                                    aria-describedby="majorError"
+                                >
+                                    <option value="">Select a Major</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Arts & Humanities">Arts & Humanities</option>
+                                    <option value="Sciences">Sciences</option>
+                                    <option value="Social Sciences">Social Sciences</option>
+                                    <option value="Medicine">Medicine</option>
+                                    <option value="Law">Law</option>
+                                </select>
+                                <span class="form-error" id="majorError"></span>
+                            </div>
+
+                            <!-- Year Level -->
+                            <div class="form-group">
+                                <label for="year">Year Level <span class="required" aria-label="required">*</span></label>
+                                <select 
+                                    id="year" 
+                                    name="year"
+                                    required
+                                    aria-describedby="yearError"
+                                >
+                                    <option value="">Select Year</option>
+                                    <option value="First Year">First Year</option>
+                                    <option value="Second Year">Second Year</option>
+                                    <option value="Third Year">Third Year</option>
+                                    <option value="Fourth Year">Fourth Year</option>
+                                </select>
+                                <span class="form-error" id="yearError"></span>
+                            </div>
+
+                            <!-- GPA -->
+                            <div class="form-group">
+                                <label for="gpa">Current GPA <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="number" 
+                                    id="gpa" 
+                                    name="gpa" 
+                                    min="0" 
+                                    max="4" 
+                                    step="0.01"
+                                    placeholder="3.50"
+                                    required
+                                    aria-describedby="gpaError"
+                                >
+                                <span class="form-error" id="gpaError"></span>
+                            </div>
+
+                            <!-- Enrollment Date -->
+                            <div class="form-group">
+                                <label for="enrollmentDate">Enrollment Date <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="date" 
+                                    id="enrollmentDate" 
+                                    name="enrollmentDate"
+                                    required
+                                    aria-describedby="enrollmentDateError"
+                                >
+                                <span class="form-error" id="enrollmentDateError"></span>
+                            </div>
+                        </fieldset>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save" aria-hidden="true"></i> Register Student
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-redo" aria-hidden="true"></i> Clear Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Students Section -->
+        <section id="students" class="tab-content" role="tabpanel" aria-labelledby="students-tab">
+            <div class="container">
+                <div class="students-wrapper">
+                    <div class="students-header">
+                        <h2>Registered Students</h2>
+                        <div class="search-box">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            <input 
+                                type="search" 
+                                id="searchInput" 
+                                placeholder="Search by name, email, or ID..."
+                                aria-label="Search students"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="emptyState" class="empty-state" style="display: none;">
+                        <i class="fas fa-inbox" aria-hidden="true"></i>
+                        <p>No students registered yet. <a href="#register" class="link">Start registering students</a></p>
+                    </div>
+
+                    <!-- Students Table -->
+                    <div id="tableWrapper" class="table-wrapper" style="display: none;">
+                        <table class="students-table" role="grid" aria-label="Registered students table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="sortable" data-sort="id">
+                                        <span>ID</span>
+                                        <i class="fas fa-sort" aria-hidden="true"></i>
+                                    </th>
+                                    <th scope="col" class="sortable" data-sort="fullName">
+                                        <span>Name</span>
+                                        <i class="fas fa-sort" aria-hidden="true"></i>
+                                    </th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Major</th>
+                                    <th scope="col">Year</th>
+                                    <th scope="col" class="sortable" data-sort="gpa">
+                                        <span>GPA</span>
+                                        <i class="fas fa-sort" aria-hidden="true"></i>
+                                    </th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsList">
+                                <!-- Students will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Bulk Actions -->
+                    <div id="bulkActions" class="bulk-actions" style="display: none;">
+                        <button id="exportBtn" class="btn btn-outline">
+                            <i class="fas fa-download" aria-hidden="true"></i> Export to CSV
+                        </button>
+                        <button id="deleteAllBtn" class="btn btn-danger">
+                            <i class="fas fa-trash" aria-hidden="true"></i> Delete All
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section id="statistics" class="tab-content" role="tabpanel" aria-labelledby="statistics-tab">
+            <div class="container">
+                <div class="statistics-wrapper">
+                    <h2>Statistics</h2>
+
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <p class="stat-label">Total Students</p>
+                                <p class="stat-value" id="totalStudents">0</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-book" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <p class="stat-label">Average GPA</p>
+                                <p class="stat-value" id="averageGPA">0.00</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <p class="stat-label">Highest GPA</p>
+                                <p class="stat-value" id="highestGPA">0.00</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <p class="stat-label">Most Common Major</p>
+                                <p class="stat-value" id="commonMajor">-</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Major Distribution -->
+                    <div class="chart-wrapper">
+                        <h3>Major Distribution</h3>
+                        <div id="majorChart" class="chart-container">
+                            <div id="majorList" class="major-list">
+                                <!-- Major distribution will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Year Distribution -->
+                    <div class="chart-wrapper">
+                        <h3>Year Distribution</h3>
+                        <div id="yearChart" class="chart-container">
+                            <div id="yearList" class="year-list">
+                                <!-- Year distribution will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p>&copy; 2026 Student Registration System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Edit Modal -->
+    <dialog class="modal" id="editModal" aria-labelledby="editModalTitle">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <h2 id="editModalTitle">Edit Student Information</h2>
+            
+            <form id="editForm" class="edit-form">
+                <input type="hidden" id="editStudentId">
+                
+                <div class="form-group">
+                    <label for="editFullName">Full Name</label>
+                    <input type="text" id="editFullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editGPA">GPA</label>
+                    <input type="number" id="editGPA" min="0" max="4" step="0.01" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" id="cancelEdit">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- Confirmation Modal -->
+    <dialog class="modal modal-confirmation" id="confirmModal" aria-labelledby="confirmTitle">
+        <div class="modal-content">
+            <h2 id="confirmTitle">Confirm Action</h2>
+            <p id="confirmMessage"></p>
+            <div class="form-actions">
+                <button id="confirmBtn" class="btn btn-danger">Delete</button>
+                <button id="cancelBtn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>
