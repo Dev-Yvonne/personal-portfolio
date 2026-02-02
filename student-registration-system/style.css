@@ -549,6 +549,20 @@ legend {
     margin-bottom: var(--spacing-lg);
 }
 
+.form-hint {
+    display: block;
+    font-size: 12px;
+    color: var(--color-gray);
+    margin-top: 4px;
+    font-style: italic;
+}
+
+.form-hint::before {
+    content: 'ℹ ';
+    color: var(--color-info);
+    font-weight: 600;
+}
+
 .form-group-half {
     display: inline-block;
     width: calc(50% - var(--spacing-sm) / 2);

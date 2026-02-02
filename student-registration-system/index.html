@@ -231,10 +231,11 @@
                                     type="text" 
                                     id="address" 
                                     name="address" 
-                                    placeholder="123 Main Street"
+                                    placeholder="e.g., 123 Main Street, Apartment 4B"
                                     required
                                     aria-describedby="addressError"
                                 >
+                                <small class="form-hint">Must include a street number and be at least 5 characters</small>
                                 <span class="form-error" id="addressError"></span>
                             </div>
 
@@ -245,10 +246,11 @@
                                     type="text" 
                                     id="city" 
                                     name="city" 
-                                    placeholder="New York"
+                                    placeholder="e.g., New York"
                                     required
                                     aria-describedby="cityError"
                                 >
+                                <small class="form-hint">Letters and hyphens only, at least 2 characters</small>
                                 <span class="form-error" id="cityError"></span>
                             </div>
 
@@ -259,10 +261,11 @@
                                     type="text" 
                                     id="state" 
                                     name="state" 
-                                    placeholder="NY"
+                                    placeholder="e.g., New York or NY"
                                     required
                                     aria-describedby="stateError"
                                 >
+                                <small class="form-hint">Letters and hyphens only, at least 2 characters</small>
                                 <span class="form-error" id="stateError"></span>
                             </div>
 
@@ -273,10 +276,11 @@
                                     type="text" 
                                     id="zip" 
                                     name="zip" 
-                                    placeholder="10001"
+                                    placeholder="e.g., 10001 or M5V 3A8"
                                     required
                                     aria-describedby="zipError"
                                 >
+                                <small class="form-hint">3-10 characters, letters, numbers, hyphens allowed</small>
                                 <span class="form-error" id="zipError"></span>
                             </div>
 
@@ -287,10 +291,11 @@
                                     type="text" 
                                     id="country" 
                                     name="country" 
-                                    placeholder="United States"
+                                    placeholder="e.g., United States or Canada"
                                     required
                                     aria-describedby="countryError"
                                 >
+                                <small class="form-hint">Letters and hyphens only, at least 2 characters</small>
                                 <span class="form-error" id="countryError"></span>
                             </div>
                         </fieldset>

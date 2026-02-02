@@ -319,6 +319,101 @@ class FormValidator {
         return age >= 16;
     }
 
+    static validateAddress(address) {
+        if (!address || !address.trim()) {
+            return { valid: false, error: 'Street address is required' };
+        }
+
+        // Check minimum length (at least 5 characters)
+        if (address.trim().length < 5) {
+            return { valid: false, error: 'Address must be at least 5 characters long' };
+        }
+
+        // Check if address contains at least one number (house/building number)
+        if (!/\d/.test(address)) {
+            return { valid: false, error: 'Address must include a house/building number' };
+        }
+
+        return { valid: true };
+    }
+
+    static validateZipCode(zip) {
+        if (!zip || !zip.trim()) {
+            return { valid: false, error: 'ZIP/Postal code is required' };
+        }
+
+        // Check minimum length
+        if (zip.trim().length < 3) {
+            return { valid: false, error: 'ZIP/Postal code must be at least 3 characters' };
+        }
+
+        // Check maximum length
+        if (zip.trim().length > 10) {
+            return { valid: false, error: 'ZIP/Postal code must not exceed 10 characters' };
+        }
+
+        // Allow alphanumeric with spaces and hyphens
+        if (!/^[a-zA-Z0-9\s\-]+$/.test(zip)) {
+            return { valid: false, error: 'ZIP/Postal code contains invalid characters' };
+        }
+
+        return { valid: true };
+    }
+
+    static validateCity(city) {
+        if (!city || !city.trim()) {
+            return { valid: false, error: 'City is required' };
+        }
+
+        // Check minimum length
+        if (city.trim().length < 2) {
+            return { valid: false, error: 'City name must be at least 2 characters' };
+        }
+
+        // Allow only letters, spaces, and hyphens
+        if (!/^[a-zA-Z\s\-']+$/.test(city)) {
+            return { valid: false, error: 'City name contains invalid characters' };
+        }
+
+        return { valid: true };
+    }
+
+    static validateState(state) {
+        if (!state || !state.trim()) {
+            return { valid: false, error: 'State/Province is required' };
+        }
+
+        // Check minimum length
+        if (state.trim().length < 2) {
+            return { valid: false, error: 'State/Province must be at least 2 characters' };
+        }
+
+        // Allow only letters, spaces, and hyphens
+        if (!/^[a-zA-Z\s\-']+$/.test(state)) {
+            return { valid: false, error: 'State/Province contains invalid characters' };
+        }
+
+        return { valid: true };
+    }
+
+    static validateCountry(country) {
+        if (!country || !country.trim()) {
+            return { valid: false, error: 'Country is required' };
+        }
+
+        // Check minimum length
+        if (country.trim().length < 2) {
+            return { valid: false, error: 'Country name must be at least 2 characters' };
+        }
+
+        // Allow only letters, spaces, and hyphens
+        if (!/^[a-zA-Z\s\-']+$/.test(country)) {
+            return { valid: false, error: 'Country contains invalid characters' };
+        }
+
+        return { valid: true };
+    }
+
     static validateForm(formData) {
         const errors = {};
 
@@ -344,24 +439,34 @@ class FormValidator {
             errors.dob = 'You must be at least 16 years old';
         }
 
-        if (!formData.address.trim()) {
-            errors.address = 'Address is required';
+        // Validate street address
+        const addressValidation = this.validateAddress(formData.address);
+        if (!addressValidation.valid) {
+            errors.address = addressValidation.error;
         }
 
-        if (!formData.city.trim()) {
-            errors.city = 'City is required';
+        // Validate city
+        const cityValidation = this.validateCity(formData.city);
+        if (!cityValidation.valid) {
+            errors.city = cityValidation.error;
         }
 
-        if (!formData.state.trim()) {
-            errors.state = 'State/Province is required';
+        // Validate state
+        const stateValidation = this.validateState(formData.state);
+        if (!stateValidation.valid) {
+            errors.state = stateValidation.error;
         }
 
-        if (!formData.zip.trim()) {
-            errors.zip = 'ZIP code is required';
+        // Validate ZIP code
+        const zipValidation = this.validateZipCode(formData.zip);
+        if (!zipValidation.valid) {
+            errors.zip = zipValidation.error;
         }
 
-        if (!formData.country.trim()) {
-            errors.country = 'Country is required';
+        // Validate country
+        const countryValidation = this.validateCountry(formData.country);
+        if (!countryValidation.valid) {
+            errors.country = countryValidation.error;
         }
 
         if (!formData.major) {
