@@ -11,6 +11,7 @@
 class AuthManager {
     constructor() {
         this.currentUser = this.getCurrentUser();
+        this.pendingVerification = this.getPendingVerification();
     }
 
     getCurrentUser() {
@@ -23,8 +24,21 @@ class AuthManager {
         }
     }
 
+    getPendingVerification() {
+        try {
+            const pending = localStorage.getItem('pendingVerification');
+            return pending ? JSON.parse(pending) : null;
+        } catch (e) {
+            return null;
+        }
+    }
+
     isAuthenticated() {
         return this.currentUser !== null;
+    }
+
+    generateVerificationCode() {
+        return Math.floor(100000 + Math.random() * 900000).toString();
     }
 
     register(name, email, password) {
@@ -49,20 +63,88 @@ class AuthManager {
             return { success: false, error: 'Please enter a valid email' };
         }
 
-        // Create new user (store password - note: in production, always hash passwords!)
-        const newUser = {
+        // Generate verification code
+        const verificationCode = this.generateVerificationCode();
+
+        // Store pending verification
+        const pendingUser = {
             id: Date.now(),
             name,
             email,
             password, // WARNING: Never store plain text passwords in production!
+            verificationCode,
+            codeExpiry: Date.now() + (10 * 60 * 1000), // Code valid for 10 minutes
+            verified: false,
             createdAt: new Date().toISOString()
         };
 
+        localStorage.setItem('pendingVerification', JSON.stringify(pendingUser));
+        this.pendingVerification = pendingUser;
+
+        // In production, send email with code
+        // For demo: log to console and show alert
+        console.log(`%c📧 Verification Code for ${email}: ${verificationCode}`, 'color: #10B981; font-size: 14px; font-weight: bold;');
+
+        return { 
+            success: true, 
+            message: `Verification code sent to ${email}`,
+            verificationCode // Return code for demo purposes (remove in production)
+        };
+    }
+
+    verifyEmail(code) {
+        if (!this.pendingVerification) {
+            return { success: false, error: 'No pending verification' };
+        }
+
+        if (Date.now() > this.pendingVerification.codeExpiry) {
+            localStorage.removeItem('pendingVerification');
+            this.pendingVerification = null;
+            return { success: false, error: 'Verification code expired. Please sign up again.' };
+        }
+
+        if (this.pendingVerification.verificationCode !== code) {
+            return { success: false, error: 'Invalid verification code' };
+        }
+
+        // Code is valid, create user account
+        const verifiedUser = {
+            ...this.pendingVerification,
+            verified: true,
+            verifiedAt: new Date().toISOString()
+        };
+
         const users = this.getAllUsers();
-        users.push(newUser);
+        users.push(verifiedUser);
         localStorage.setItem('users', JSON.stringify(users));
 
-        return { success: true, user: newUser };
+        // Clear pending verification
+        localStorage.removeItem('pendingVerification');
+        this.pendingVerification = null;
+
+        return { success: true, user: verifiedUser };
+    }
+
+    resendVerificationCode() {
+        if (!this.pendingVerification) {
+            return { success: false, error: 'No pending verification' };
+        }
+
+        // Generate new code
+        const newCode = this.generateVerificationCode();
+        this.pendingVerification.verificationCode = newCode;
+        this.pendingVerification.codeExpiry = Date.now() + (10 * 60 * 1000);
+
+        localStorage.setItem('pendingVerification', JSON.stringify(this.pendingVerification));
+
+        // Log to console for demo
+        console.log(`%c📧 New Verification Code for ${this.pendingVerification.email}: ${newCode}`, 'color: #3B82F6; font-size: 14px; font-weight: bold;');
+
+        return { 
+            success: true, 
+            message: 'Verification code resent',
+            verificationCode: newCode // Return code for demo purposes
+        };
     }
 
     login(email, password) {
@@ -77,6 +159,10 @@ class AuthManager {
             return { success: false, error: 'Email not found' };
         }
 
+        if (!user.verified) {
+            return { success: false, error: 'Email not verified. Please verify your email first.' };
+        }
+
         if (user.password !== password) {
             return { success: false, error: 'Incorrect password' };
         }
@@ -86,6 +172,7 @@ class AuthManager {
             id: user.id,
             name: user.name,
             email: user.email,
+            verified: user.verified,
             loginTime: new Date().toISOString()
         };
 
@@ -768,6 +855,10 @@ class AuthUIManager {
         const signupForm = document.getElementById('signupForm');
         signupForm.addEventListener('submit', (e) => this.handleSignup(e));
 
+        // Verification form
+        const verificationForm = document.getElementById('verificationForm');
+        verificationForm.addEventListener('submit', (e) => this.handleVerification(e));
+
         // Toggle forms
         document.getElementById('toSignup').addEventListener('click', (e) => {
             e.preventDefault();
@@ -777,6 +868,12 @@ class AuthUIManager {
         document.getElementById('toLogin').addEventListener('click', (e) => {
             e.preventDefault();
             this.toggleForms();
+        });
+
+        // Resend verification code
+        document.getElementById('resendCode').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.handleResendCode();
         });
 
         // Logout
@@ -846,11 +943,16 @@ class AuthUIManager {
 
         if (result.success) {
             document.getElementById('signupMessage').className = 'form-message success';
-            document.getElementById('signupMessage').textContent = 'Account created successfully! You can now login.';
+            document.getElementById('signupMessage').textContent = result.message;
             
             setTimeout(() => {
                 document.getElementById('signupForm').reset();
-                this.toggleForms();
+                // Show verification form
+                this.showVerificationForm(email);
+                // Show verification code in demo alert
+                if (result.verificationCode) {
+                    alert(`📧 Verification Code: ${result.verificationCode}\n\nThis code is also shown in the browser console.\n\nEnter this code in the verification form.`);
+                }
             }, 1000);
         } else {
             document.getElementById('signupMessage').className = 'form-message error';
@@ -864,8 +966,64 @@ class AuthUIManager {
             this.showAuthPage();
             document.getElementById('loginForm').reset();
             document.getElementById('signupForm').reset();
+            document.getElementById('verificationForm').reset();
             document.getElementById('loginForm').classList.add('active');
             document.getElementById('signupForm').classList.remove('active');
+            document.getElementById('verificationForm').classList.remove('active');
+        }
+    }
+
+    handleVerification(e) {
+        e.preventDefault();
+
+        const code = document.getElementById('verificationCode').value;
+
+        // Clear previous errors
+        document.getElementById('verificationCodeError').textContent = '';
+        document.getElementById('verificationMessage').className = 'form-message';
+
+        const result = this.auth.verifyEmail(code);
+
+        if (result.success) {
+            document.getElementById('verificationMessage').className = 'form-message success';
+            document.getElementById('verificationMessage').textContent = 'Email verified successfully! You can now login.';
+            
+            setTimeout(() => {
+                document.getElementById('verificationForm').reset();
+                this.showLoginForm();
+            }, 1500);
+        } else {
+            document.getElementById('verificationMessage').className = 'form-message error';
+            document.getElementById('verificationMessage').textContent = result.error;
+        }
+    }
+
+    handleResendCode(e) {
+        if (e) {
+            e.preventDefault();
+        }
+
+        const result = this.auth.resendVerificationCode();
+
+        if (result.success) {
+            const msg = document.getElementById('verificationMessage');
+            msg.className = 'form-message success';
+            msg.textContent = result.message;
+
+            if (result.verificationCode) {
+                setTimeout(() => {
+                    alert(`📧 New Verification Code: ${result.verificationCode}`);
+                }, 200);
+            }
+
+            setTimeout(() => {
+                msg.className = 'form-message';
+                msg.textContent = '';
+            }, 5000);
+        } else {
+            const msg = document.getElementById('verificationMessage');
+            msg.className = 'form-message error';
+            msg.textContent = result.error;
         }
     }
 
@@ -885,6 +1043,30 @@ class AuthUIManager {
         document.getElementById('authContainer').style.display = 'flex';
         document.getElementById('navbar').style.display = 'none';
         document.getElementById('main-content').style.display = 'none';
+    }
+
+    showLoginForm() {
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const verificationForm = document.getElementById('verificationForm');
+
+        loginForm.classList.add('active');
+        signupForm.classList.remove('active');
+        verificationForm.classList.remove('active');
+    }
+
+    showVerificationForm(email) {
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const verificationForm = document.getElementById('verificationForm');
+
+        loginForm.classList.remove('active');
+        signupForm.classList.remove('active');
+        verificationForm.classList.add('active');
+
+        // Update email display in verification form
+        document.getElementById('verificationEmail').textContent = email;
+        document.getElementById('verificationCode').focus();
     }
 
     showMainApp() {

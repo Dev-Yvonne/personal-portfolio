@@ -38,6 +38,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                 <p class="auth-toggle">Don't have an account? <a href="#" id="toSignup">Sign Up</a></p>
+                <p class="auth-toggle"><a href="#" id="toForgot">Forgot password?</a></p>
                 <div id="loginMessage" class="form-message"></div>
             </form>
 
@@ -67,6 +68,20 @@
                 <button type="submit" class="btn btn-primary btn-block">Create Account</button>
                 <p class="auth-toggle">Already have an account? <a href="#" id="toLogin">Sign In</a></p>
                 <div id="signupMessage" class="form-message"></div>
+            </form>
+
+            <!-- Email Verification Form -->
+            <form id="verificationForm" class="auth-form">
+                <h2>Verify Your Email</h2>
+                <p class="verification-subtitle">We've sent a verification code to<br><strong id="verificationEmail"></strong></p>
+                <div class="form-group">
+                    <label for="verificationCode">Verification Code</label>
+                    <input type="text" id="verificationCode" name="code" placeholder="Enter 6-digit code" maxlength="6" required>
+                    <span class="form-error" id="verificationCodeError"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Verify Email</button>
+                <p class="auth-toggle">Didn't receive the code? <a href="#" id="resendCode">Resend</a></p>
+                <div id="verificationMessage" class="form-message"></div>
             </form>
         </div>
     </div>

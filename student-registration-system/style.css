@@ -183,6 +183,19 @@ a:focus-visible {
     margin: 0 0 24px 0;
 }
 
+.verification-subtitle {
+    font-size: 13px;
+    color: var(--color-gray);
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.verification-subtitle strong {
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
 .auth-form .form-group {
     margin-bottom: 16px;
 }
