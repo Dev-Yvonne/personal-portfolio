@@ -1,7 +1,115 @@
 /**
  * Student Registration System - JavaScript
  * Vanilla JS, no dependencies
+ * Includes: Authentication, Student Management, Form Validation
  */
+
+// ===================================
+// Authentication System
+// ===================================
+
+class AuthManager {
+    constructor() {
+        this.currentUser = this.getCurrentUser();
+    }
+
+    getCurrentUser() {
+        try {
+            const user = localStorage.getItem('currentUser');
+            return user ? JSON.parse(user) : null;
+        } catch (e) {
+            console.error('Error getting current user:', e);
+            return null;
+        }
+    }
+
+    isAuthenticated() {
+        return this.currentUser !== null;
+    }
+
+    register(name, email, password) {
+        // Validate input
+        if (!name.trim() || !email.trim() || !password) {
+            return { success: false, error: 'Please fill in all fields' };
+        }
+
+        if (password.length < 6) {
+            return { success: false, error: 'Password must be at least 6 characters' };
+        }
+
+        // Check if email already exists
+        const users = this.getAllUsers();
+        if (users.some(u => u.email === email)) {
+            return { success: false, error: 'Email already registered' };
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return { success: false, error: 'Please enter a valid email' };
+        }
+
+        // Create new user (store password - note: in production, always hash passwords!)
+        const newUser = {
+            id: Date.now(),
+            name,
+            email,
+            password, // WARNING: Never store plain text passwords in production!
+            createdAt: new Date().toISOString()
+        };
+
+        const users = this.getAllUsers();
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+
+        return { success: true, user: newUser };
+    }
+
+    login(email, password) {
+        if (!email.trim() || !password) {
+            return { success: false, error: 'Please enter email and password' };
+        }
+
+        const users = this.getAllUsers();
+        const user = users.find(u => u.email === email);
+
+        if (!user) {
+            return { success: false, error: 'Email not found' };
+        }
+
+        if (user.password !== password) {
+            return { success: false, error: 'Incorrect password' };
+        }
+
+        // Successful login
+        const userSession = {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            loginTime: new Date().toISOString()
+        };
+
+        localStorage.setItem('currentUser', JSON.stringify(userSession));
+        this.currentUser = userSession;
+
+        return { success: true, user: userSession };
+    }
+
+    logout() {
+        localStorage.removeItem('currentUser');
+        this.currentUser = null;
+    }
+
+    getAllUsers() {
+        try {
+            const users = localStorage.getItem('users');
+            return users ? JSON.parse(users) : [];
+        } catch (e) {
+            console.error('Error getting users:', e);
+            return [];
+        }
+    }
+}
 
 // ===================================
 // Student Data Management
@@ -640,11 +748,172 @@ class UIManager {
 // Initialize on DOM Load
 // ===================================
 
+// ===================================
+// Authentication UI Manager
+// ===================================
+
+class AuthUIManager {
+    constructor(authManager) {
+        this.auth = authManager;
+        this.setupEventListeners();
+        this.checkAuthentication();
+    }
+
+    setupEventListeners() {
+        // Login form
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', (e) => this.handleLogin(e));
+
+        // Signup form
+        const signupForm = document.getElementById('signupForm');
+        signupForm.addEventListener('submit', (e) => this.handleSignup(e));
+
+        // Toggle forms
+        document.getElementById('toSignup').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.toggleForms();
+        });
+
+        document.getElementById('toLogin').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.toggleForms();
+        });
+
+        // Logout
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => this.handleLogout());
+        }
+    }
+
+    checkAuthentication() {
+        if (this.auth.isAuthenticated()) {
+            this.showMainApp();
+        } else {
+            this.showAuthPage();
+        }
+    }
+
+    handleLogin(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        // Clear previous errors
+        document.getElementById('loginEmailError').textContent = '';
+        document.getElementById('loginPasswordError').textContent = '';
+        document.getElementById('loginMessage').className = 'form-message';
+
+        const result = this.auth.login(email, password);
+
+        if (result.success) {
+            document.getElementById('loginMessage').className = 'form-message success';
+            document.getElementById('loginMessage').textContent = 'Login successful! Redirecting...';
+            
+            setTimeout(() => {
+                document.getElementById('loginForm').reset();
+                this.showMainApp();
+            }, 500);
+        } else {
+            document.getElementById('loginMessage').className = 'form-message error';
+            document.getElementById('loginMessage').textContent = result.error;
+        }
+    }
+
+    handleSignup(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('signupName').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const confirm = document.getElementById('signupConfirm').value;
+
+        // Clear previous errors
+        document.getElementById('signupNameError').textContent = '';
+        document.getElementById('signupEmailError').textContent = '';
+        document.getElementById('signupPasswordError').textContent = '';
+        document.getElementById('signupConfirmError').textContent = '';
+        document.getElementById('signupMessage').className = 'form-message';
+
+        // Validate match
+        if (password !== confirm) {
+            document.getElementById('signupConfirmError').textContent = 'Passwords do not match';
+            return;
+        }
+
+        const result = this.auth.register(name, email, password);
+
+        if (result.success) {
+            document.getElementById('signupMessage').className = 'form-message success';
+            document.getElementById('signupMessage').textContent = 'Account created successfully! You can now login.';
+            
+            setTimeout(() => {
+                document.getElementById('signupForm').reset();
+                this.toggleForms();
+            }, 1000);
+        } else {
+            document.getElementById('signupMessage').className = 'form-message error';
+            document.getElementById('signupMessage').textContent = result.error;
+        }
+    }
+
+    handleLogout() {
+        if (confirm('Are you sure you want to sign out?')) {
+            this.auth.logout();
+            this.showAuthPage();
+            document.getElementById('loginForm').reset();
+            document.getElementById('signupForm').reset();
+            document.getElementById('loginForm').classList.add('active');
+            document.getElementById('signupForm').classList.remove('active');
+        }
+    }
+
+    toggleForms() {
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+
+        loginForm.classList.toggle('active');
+        signupForm.classList.toggle('active');
+
+        // Clear messages when toggling
+        document.getElementById('loginMessage').className = 'form-message';
+        document.getElementById('signupMessage').className = 'form-message';
+    }
+
+    showAuthPage() {
+        document.getElementById('authContainer').style.display = 'flex';
+        document.getElementById('navbar').style.display = 'none';
+        document.getElementById('main-content').style.display = 'none';
+    }
+
+    showMainApp() {
+        document.getElementById('authContainer').style.display = 'none';
+        document.getElementById('navbar').style.display = 'block';
+        document.getElementById('main-content').style.display = 'block';
+
+        // Update user display
+        if (this.auth.currentUser) {
+            document.getElementById('userDisplay').textContent = `Welcome, ${this.auth.currentUser.name}`;
+        }
+    }
+}
+
+let auth;
+let authUI;
 let registry;
 let ui;
 
 document.addEventListener('DOMContentLoaded', () => {
-    registry = new StudentRegistry();
-    ui = new UIManager(registry);
-    console.log('Student Registration System initialized');
+    auth = new AuthManager();
+    authUI = new AuthUIManager(auth);
+    
+    // Initialize main app only if authenticated
+    if (auth.isAuthenticated()) {
+        registry = new StudentRegistry();
+        ui = new UIManager(registry);
+        console.log('Student Registration System initialized - User authenticated');
+    } else {
+        console.log('Authentication required');
+    }
 });
